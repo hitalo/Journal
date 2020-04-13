@@ -3,10 +3,10 @@ const authConfig = require('../config/auth');
 
 module.exports = (req, res, next) => {
     
-    const authHeader = req.headers.authorization;
-    if(!authHeader) return res.status(401).send({error: "token not found"});
+    const authToken = req.cookies.authentication;
+    if(!authToken) return res.status(401).send({error: "token not found"});
 
-    const parts = authHeader.split(' ');
+    const parts = authToken.split(' ');
     if(!parts.lenght ===2) return res.status(401).send({error: "invalid token"});
 
     const [scheme, token] = parts;

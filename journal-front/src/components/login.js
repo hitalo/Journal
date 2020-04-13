@@ -20,7 +20,8 @@ class Login extends Component {
 
     login = async (email, pass) => {
         await axios.post('/auth/authenticate', {email, pass}).then(res => {
-            console.log(res.data)
+            console.log(res.data);
+            this.props.history.push('/u');
         }).catch(err => console.log(err.response.data.error));
     }
 

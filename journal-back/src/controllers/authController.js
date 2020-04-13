@@ -27,11 +27,13 @@ router.post('/authenticate', async (req, res) => {
     if(!user) return res.status(400).send({error: 'user not found'});
     if(user.pass !== pass) return res.status(400).send({error: 'invalid password'}); //plain text as example    
 
-    delete user.pass;
+    // delete user.pass;
 
-    res.send({
-        user, 
-        token: generateToken({id: user.id})
+    res.cookie('authentication', `Bearer ${generateToken({id: user.id})}`, {
+        httpOnly: true,
+        // protected: true //https only
+    }).send({
+        user
     });
 });
 
