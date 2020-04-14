@@ -6,6 +6,7 @@ import PrivateRoutes from './private-routes';
 import { JournalContainer } from './components/container';
 import Login from './components/login';
 import Home from './components/home';
+import Tests from './components/tests'
 
 const Routes = () => (
     <React.Fragment>
@@ -13,7 +14,8 @@ const Routes = () => (
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Login} />
-                    <PrivateRoutes path="/u" component={Home} />
+                    <PrivateRoutes exact path="/u" component={Home} />
+                    <PrivateRoutes exact path="/u/tests" component={Tests} />
                 </Switch>
             </BrowserRouter>
         </JournalContainer>
