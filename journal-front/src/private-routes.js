@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { Redirect, Route } from 'react-router-dom';
 import { isAuthenticated } from './auth';
+import MainNavbar from './components/navbar';
 
 // const PrivateRoutes = ({component: Component, ...rest}) => (
 //     <Route {...rest} render={props => 
@@ -39,7 +40,14 @@ class PrivateRoutes extends Component {
         const { component: Component, ...rest } = this.props;
         return (
             <Route {...rest} render={props => (
-                this.state.allow ? <Component {...props} /> : <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+                this.state.allow ? (
+                    <div>
+                        <MainNavbar />
+                        <Component {...props} />
+                    </div>
+                ) : (
+                        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+                    )
             )} />
         )
     }
