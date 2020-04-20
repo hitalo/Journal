@@ -1,25 +1,63 @@
 import React, { Component } from 'react';
+import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import axios from 'axios';
+import styled from 'styled-components';
 
 class Home extends Component {
 
-    testAuth = () => {
-        axios.post("/projects", {}, {withCredentials: true}).then(res => {
-            console.log(res.data);
-        }).catch(err => {
-            console.log(err.response.data.error);
-        });
-    }
+    data = [{
+        id: 1,
+        name: "Mark",
+        info: "something"
+    }, {
+        id: 2,
+        name: "Paul",
+        info: "last modified"
+    }, {
+        id: 3,
+        name: "Hit",
+        info: "cool"
+    }];
 
     render() {
         return (
-            <div>
-                <h1>Home</h1>
-                <Button variant="primary" onClick={this.testAuth}>Test Auth</Button>
-            </div>
+            <Styles>
+                <Button variant="primary" className="new-journal-button">New Journal</Button>
+                <Table striped bordered hover responsive size="sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Info</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.data.map(journal => {
+                                return (
+                                    <tr key={journal.id} onClick={() => this.props.history.push("/u/editor")}>
+                                        <td>{journal.id}</td>
+                                        <td width="70%">{journal.name}</td>
+                                        <td>{journal.info}</td>
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </Table>
+            </Styles>
         )
     }
 }
+
+const Styles = styled.div`
+
+.new-journal-button {
+    margin: 10px;
+    margin-right: 0px;
+    float: right;
+}
+
+`;
 
 export default Home;

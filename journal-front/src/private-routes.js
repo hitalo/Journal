@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import { Redirect, Route } from 'react-router-dom';
 import { isAuthenticated } from './auth';
@@ -39,18 +42,27 @@ class PrivateRoutes extends Component {
 
         const { component: Component, ...rest } = this.props;
         return (
-            <Route {...rest} render={props => (
-                this.state.allow ? (
-                    <div>
-                        <MainNavbar />
-                        <Component {...props} />
-                    </div>
-                ) : (
-                        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-                    )
-            )} />
+            <Styles>
+                <Route {...rest} render={props => (
+                    this.state.allow ? (
+                        <div>
+                            <MainNavbar />
+                            <Row className="justify-content-md-center"><Col md={8}>
+                                <Component {...props} />
+                            </Col></Row>
+                        </div>
+                    ) : (
+                            <Redirect to={{ pathname: "/", state: { from: props.location } }} />
+                        )
+                )} />
+            </Styles>
         )
     }
 }
+
+const Styles = styled.div`
+
+
+`;
 
 export default PrivateRoutes;
