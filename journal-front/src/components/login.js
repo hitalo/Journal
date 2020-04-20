@@ -18,8 +18,8 @@ class Login extends Component {
         this.setState({[event.target.name]: event.target.value});  
     }
 
-    login = async (email, pass) => {
-        await axios.post('/auth/authenticate', {email, pass}).then(res => {
+    login = (email, pass) => {
+        axios.post('/auth/authenticate', {email, pass}).then(res => {
             console.log(res.data);
             this.props.history.push('/u');
         }).catch(err => console.log(err.response.data.error));
