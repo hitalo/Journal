@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import { Editor } from 'react-draft-wysiwyg';
 import { EditorState } from 'draft-js';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { stateToHTML } from 'draft-js-export-html';
 import styled from 'styled-components';
 import axios from 'axios';
-import { Col } from 'react-bootstrap';
 
 
 class JournalEditor extends Component {
