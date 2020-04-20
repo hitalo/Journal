@@ -1,4 +1,5 @@
 const express = require('express');
+const pdf = require('html-pdf');
 const authMiddleware = require('../middlewares/auth');
 
 const router = express.Router();
@@ -15,6 +16,15 @@ router.post('/logged-in', async (req, res) => {
         return res.send({status: true});
     }
 
+});
+
+router.post('/create-pdf', (req, res) => {
+    const options = { format: 'Letter' };
+    pdf.create(req.body.html, options).toFile('./test.pdf', (err, file) => {
+        if (err) return console.log(err);
+        console.log(file);
+        res.send({success: true});
+    });
 });
 
 module.exports = app => app.use('/projects', router);
