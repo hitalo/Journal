@@ -16,12 +16,14 @@ class MainNavbar extends Component {
                         <Nav className="mr-auto">
                             <Nav.Link href="/u">Home</Nav.Link>
                             <Nav.Link href="#link">Contact</Nav.Link>
-                            <NavDropdown title="Settings" id="basic-nav-dropdown">
+                        </Nav>
+                        <Nav>
+                            <NavDropdown title="Settings" id="basic-nav-dropdown" drop="left">
                                 <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                                 <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
                                 <NavDropdown.Item href="/u/tests">Tests</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                                <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                     </Navbar.Collapse>
